@@ -1,35 +1,35 @@
 # FlutterSample
 
-[中文版](./README-zh-CN.md)
+[English version](./README-zh-CN.md)
 
-## Usage
+## 用法
 
-1. Switch to the corresponding branch  
-2. Switch directory to flutter module 
+1. 切换到对应分支  
+2. 进入 flutter module 所在目录  
 
 ```
 cd sub/my_flutter/
 ```
 
-3. run
+3. 运行
 
 ```
 flutter run
 ```
 
-## Branch
+## 分支
 
 **feature/ui-refresh-one:**  
-Direct layout
+直接布局
 
 ![](./ext_res/ui-refresh-one.png)
 
 **feature/ui-refresh-two:**  
-Two widget combinations：Expanded Widget + Column Widget
+两个 Widget 组合：Expanded Widget + Column Widget
 
 ![](./ext_res/ui-refresh-two.png)
 
 **feature/ui-refresh-three:**  
-Column Widget + mainAxisAlignment attr
+Column Widget + mainAxisAlignment 属性
 
 ![](./ext_res/ui-refresh-three.png)
