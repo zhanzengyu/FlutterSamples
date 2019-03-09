@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
               //这里 onPressed 不能为 null，如果写 null 会怎样，大家可以试下~
               onPressed: (){},
               child: Text(
+                //演示而已，实际开发需要多语言
                 '刷新',
                 style: TextStyle(
                     color: Colors.white,
