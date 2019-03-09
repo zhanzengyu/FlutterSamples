@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Color(0xFFF0F1F0),
         body: Center(
           child: _buildWidget(),
         ),
@@ -16,7 +17,35 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _buildWidget() {
-    //TODO
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(left: 97.0, right: 97.0, top: 125),
+            child: Image.asset('assets/images/refresh.png', width: 49, height: 44,),
+          ),
+          SizedBox(
+            height: 42.0,
+          ),
+          FlatButton(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              //注意这里 alpha 最大值是 255， sketch 上面最大值是 100
+              color: Color.fromARGB(255, 13, 46, 172),
+              //这里 onPressed 不能为 null，如果写 null 会怎样，大家可以试下~
+              onPressed: (){},
+              child: Text(
+                //演示而已，实际开发需要多语言
+                '刷新',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600
+                ),
+              )
+          )
+        ],
+      ),
+    );
   }
 
 }
