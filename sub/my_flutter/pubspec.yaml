@@ -37,7 +37,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add Flutter specific assets to your application, add an assets section, 
+  assets:
+    - assets/images/refresh.png
+  # To add Flutter specific assets to your application, add an assets section,
   # like this:
   # assets:
   #  - images/a_dot_burr.jpeg
