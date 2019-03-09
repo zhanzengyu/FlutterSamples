@@ -4,14 +4,27 @@
 
 ## Usage
 
-1. Switch to the corresponding branch  
-2. Switch directory to flutter module 
+1. Clone respository to your local 
+
+```
+git clone https://github.com/nesger/FlutterSample.git
+```
+
+2. Import project to Android Studio  
+3. Switch to the corresponding branch  
+4. Switch directory to flutter module 
 
 ```
 cd sub/my_flutter/
 ```
 
-3. run
+5. run 
+
+```
+flutter packages get
+```
+
+6. run
 
 ```
 flutter run
