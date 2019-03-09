@@ -4,14 +4,27 @@
 
 ## 用法
 
-1. 切换到对应分支  
-2. 进入 flutter module 所在目录  
+1. 拷贝仓库代码到你本地设备
+
+```
+git clone https://github.com/nesger/FlutterSample.git
+```
+
+2. 将项目导入到 Android Studio
+3. 切换到对应分支  
+4. 进入 flutter module 所在目录  
 
 ```
 cd sub/my_flutter/
 ```
 
-3. 运行
+5. 执行下面命令
+
+```
+flutter packages get
+```
+
+6. 运行
 
 ```
 flutter run
