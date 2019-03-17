@@ -1,40 +1,23 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:my_flutter/battery_widget.dart';
 
 void main() => runApp(_widgetForRoute(window.defaultRouteName));
 
 Widget _widgetForRoute(String route) {
   switch (route) {
-    case 'route1':
+    case 'battery':
       return MaterialApp(
         home: Scaffold(
-          body: _buildWidget1(),
-        ),
-      );
-    case 'route2':
-      return MaterialApp(
-        home: Scaffold(
-          body: _buildWidget2(),
+          body: BatteryWidget(),
         ),
       );
     default:
       return MaterialApp(
         home: Scaffold(
-          body: _buildDefaultWidget(),
+          body: Container(),
         ),
       );
   }
-}
-
-Widget _buildWidget1() {
-  //TODO
-}
-
-Widget _buildWidget2() {
-  //TODO
-}
-
-Widget _buildDefaultWidget() {
-  //TODO
 }
