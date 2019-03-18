@@ -1,5 +1,7 @@
 package com.nesger.flutterdemo;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -12,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import io.flutter.facade.Flutter;
+import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.view.FlutterView;
@@ -19,6 +22,7 @@ import io.flutter.view.FlutterView;
 public class MainActivity extends AppCompatActivity {
 
     private static final String BATTERY_CHANNEL = "samples.flutter.io/battery";
+    private static final String CHARGING_CHANNEL = "samples.flutter.io/charging";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,41 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
+        new EventChannel((FlutterView) flutterView, CHARGING_CHANNEL).setStreamHandler(
+                new EventChannel.StreamHandler() {
+                    private BroadcastReceiver chargingStateChangeReceiver;
+
+                    @Override
+                    public void onListen(Object arguments, EventChannel.EventSink events) {
+                        chargingStateChangeReceiver = createChargingStateChangeReceiver(events);
+                        registerReceiver(
+                                chargingStateChangeReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+                    }
+
+                    @Override
+                    public void onCancel(Object arguments) {
+                        unregisterReceiver(chargingStateChangeReceiver);
+                        chargingStateChangeReceiver = null;
+                    }
+                }
+        );
+
+    }
+
+    private BroadcastReceiver createChargingStateChangeReceiver(final EventChannel.EventSink events) {
+        return new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+                if (status == BatteryManager.BATTERY_STATUS_UNKNOWN) {
+                    events.error("UNAVAILABLE", "Charging status unavailable", null);
+                } else {
+                    boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                            status == BatteryManager.BATTERY_STATUS_FULL;
+                    events.success(isCharging ? "charging" : "discharging");
+                }
+            }
+        };
     }
 
     private int getBatteryLevel() {

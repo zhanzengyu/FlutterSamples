@@ -9,22 +9,28 @@ class BatteryWidget extends StatefulWidget {
 class _BatteryWidgetState extends State<BatteryWidget> {
 
   static const MethodChannel methodChannel = MethodChannel('samples.flutter.io/battery');
+  static const EventChannel eventChannel = EventChannel('samples.flutter.io/charging');
 
   String _batteryLevel = 'Battery level: unknown.';
+  String _chargingStatus = 'Battery status: unknown.';
 
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
     try {
       final int result = await methodChannel.invokeMethod('getBatteryLevel');
       batteryLevel = 'Battery level: $result%.';
-      print('enter here');
     } on PlatformException {
       batteryLevel = 'Failed to get battery level.';
-      print('enter exception');
     }
     setState(() {
       _batteryLevel = batteryLevel;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    eventChannel.receiveBroadcastStream().listen(_onEvent, onError: _onError);
   }
 
   @override
@@ -38,8 +44,24 @@ class _BatteryWidgetState extends State<BatteryWidget> {
             child: const Text('Refresh'),
             onPressed: _getBatteryLevel,
           ),
+          Text(_chargingStatus),
         ],
       ),
     );
   }
+
+  void _onEvent(Object event) {
+    setState(() {
+      _chargingStatus =
+      "Battery status: ${event == 'charging' ? '' : 'dis'}charging.";
+    });
+  }
+
+  void _onError(Object error) {
+    setState(() {
+        PlatformException exception = error;
+        _chargingStatus = exception?.message ?? 'Battery status: unknown.';
+    });
+  }
+
 }
