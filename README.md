@@ -2,4 +2,6 @@
 
 [中文版](./README-zh-CN.md)
 
-EventChannel
+MethodChannel  
+
+Android -> Flutter
