@@ -8,7 +8,9 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String BATTERY_CHANNEL = "samples.flutter.io/battery";
     private static final String CHARGING_CHANNEL = "samples.flutter.io/charging";
+    private static final String TAG = "AndroidTraveler";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout.LayoutParams layout = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         addContentView(flutterView, layout);
 
-        new MethodChannel((FlutterView) flutterView, BATTERY_CHANNEL).setMethodCallHandler(
+        final MethodChannel methodChannel = new MethodChannel((FlutterView) flutterView, BATTERY_CHANNEL);
+        methodChannel.setMethodCallHandler(
                 new MethodChannel.MethodCallHandler() {
                     @Override
                     public void onMethodCall(MethodCall call, MethodChannel.Result result) {
@@ -47,6 +52,23 @@ public class MainActivity extends AppCompatActivity {
                             } else {
                                 result.error("UNAVAILABLE", "Battery level not available.", null);
                             }
+
+                            methodChannel.invokeMethod("getContent", "arguments", new MethodChannel.Result() {
+                                @Override
+                                public void success(@Nullable Object o) {
+                                    Log.e(TAG, "success="+o);
+                                }
+
+                                @Override
+                                public void error(String s, @Nullable String s1, @Nullable Object o) {
+                                    Log.e(TAG, "error="+s);
+                                }
+
+                                @Override
+                                public void notImplemented() {
+                                    Log.e(TAG, "notImplemented");
+                                }
+                            });
                         } else {
                             result.notImplemented();
                         }

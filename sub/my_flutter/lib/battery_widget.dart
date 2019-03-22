@@ -13,6 +13,7 @@ class _BatteryWidgetState extends State<BatteryWidget> {
 
   String _batteryLevel = 'Battery level: unknown.';
   String _chargingStatus = 'Battery status: unknown.';
+  String _arguments = 'unknown';
 
   Future<void> _getBatteryLevel() async {
     String batteryLevel;
@@ -31,6 +32,18 @@ class _BatteryWidgetState extends State<BatteryWidget> {
   void initState() {
     super.initState();
     eventChannel.receiveBroadcastStream().listen(_onEvent, onError: _onError);
+    methodChannel.setMethodCallHandler((MethodCall call){
+        if (call?.method == 'getContent') {
+          setState(() {
+            _arguments = call?.arguments ?? '';
+          });
+          return returnToRaw();
+        }
+    });
+  }
+
+  Future<String> returnToRaw() async {
+    throw PlatformException(code: 'error code');
   }
 
   @override
@@ -45,6 +58,7 @@ class _BatteryWidgetState extends State<BatteryWidget> {
             onPressed: _getBatteryLevel,
           ),
           Text(_chargingStatus),
+          Text(_arguments),
         ],
       ),
     );
