@@ -43,6 +43,7 @@ class _BatteryWidgetState extends State<BatteryWidget> {
   }
 
   Future<String> returnToRaw() async {
+//    return 'received your message';
     throw PlatformException(code: 'error code');
   }
 
