@@ -3,6 +3,11 @@ import 'package:my_flutter/item_bean.dart';
 import 'package:my_flutter/item_widget.dart';
 
 class ListViewWidget extends StatefulWidget {
+
+  final OnItemClickListener listener;
+
+  ListViewWidget(this.listener);
+
   @override
   _ListViewWidgetState createState() => _ListViewWidgetState();
 }
@@ -32,7 +37,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
       child: ListView.builder(
         itemCount: itemBeans.length,
         itemBuilder: (context, index) {
-          return ItemWidget(itemBeans[index]);
+          return ItemWidget(index, itemBeans[index], widget.listener);
         },
       ),
     );

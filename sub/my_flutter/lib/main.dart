@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _buildWidget() {
-    return ListViewWidget();
+    return ListViewWidget((position, itemBean){
+      print('pos=$position, title='+itemBean.title+",description="+itemBean.description);
+    });
   }
 }

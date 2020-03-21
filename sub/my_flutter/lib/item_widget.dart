@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:my_flutter/item_bean.dart';
 
-class ItemWidget extends StatefulWidget {
-  final ItemBean itemBean;
+/// 定义一个回调接口
+typedef OnItemClickListener = void Function(int position, ItemBean itemBean);
 
-  ItemWidget(this.itemBean);
+class ItemWidget extends StatefulWidget {
+  final int position;
+  final ItemBean itemBean;
+  final OnItemClickListener listener;
+
+  ItemWidget(this.position, this.itemBean, this.listener);
 
   @override
   _ItemWidgetState createState() => _ItemWidgetState();
@@ -13,7 +18,7 @@ class ItemWidget extends StatefulWidget {
 class _ItemWidgetState extends State<ItemWidget> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget container = Container(
       padding: EdgeInsets.only(left: 16.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -27,6 +32,10 @@ class _ItemWidgetState extends State<ItemWidget> {
           Divider(color: Colors.grey),
         ],
       ),
+    );
+    return GestureDetector(
+      child: container,
+      onTap: () => widget.listener(widget.position, widget.itemBean),
     );
   }
 }
