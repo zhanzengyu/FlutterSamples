@@ -1,52 +1,48 @@
 # FlutterSample
 
-[中文版](./README-zh-CN.md)
+## 用法
 
-## Usage
-
-1. Clone respository to your local 
+1. 拷贝仓库代码到你本地设备
 
 ```
 git clone https://github.com/nesger/FlutterSample.git
 ```
 
-2. Import project to Android Studio  
-3. Switch to the corresponding branch  
-4. Switch directory to flutter module 
+2. 将项目导入到 Android Studio
+3. 切换到对应分支  
+4. 进入 flutter module 所在目录  
 
 ```
 cd sub/my_flutter/
 ```
 
-5. run 
+5. 执行下面命令
 
 ```
 flutter packages get
 ```
 
-6. run
+6. 运行
 
 ```
 flutter run
 ```
 
-## Branch
+## 分支
 
-**feature/main_template**
+**feature/main_template：**main.dart 路由模板
 
-main.dart route template
+**feature/page_transition：**界面切换动画 DIY
 
-**feature/ui-refresh-one:**  
-Direct layout
+<hr/>
 
-![](./ext_res/ui-refresh-one.png)
+**PlatformChannel 相关分支**  
 
-**feature/ui-refresh-two:**  
-Two widget combinations：Expanded Widget + Column Widget
+**feature/event_channel：**EventChannel 使用，实现原生到 Flutter 的通信   **feature/method_channel_reverse：**MethodChannel 使用，实现 Android 到 Flutter 的通信   **feature/method_channel：**MethodChannel 使用，实现 Flutter 到原生的通信
 
-![](./ext_res/ui-refresh-two.png)
+<hr/>
 
-**feature/ui-refresh-three:**  
-Column Widget + mainAxisAlignment attr
-
-![](./ext_res/ui-refresh-three.png)
+**布局刷新居中显示示例**  
+**feature/ui-refresh-one：**直接布局  
+**feature/ui-refresh-two：**两个 Widget 组合：Expanded Widget + Column Widget  
+**feature/ui-refresh-three：**Column Widget + mainAxisAlignment 属性  
