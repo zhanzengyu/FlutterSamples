@@ -10,5 +10,8 @@
 >
 > (了解原理，目前有很多框架都基于此做了封装，比如 **Provider**、**GetX**等)
 
+#### [2. StreamBuilder vs FutureBuilder](./lib/Builder)
 
+- **FutureBuilder 适合一次性异步操作。**例如，从网络加载数据并在 Widget 初始化时显示一次。 它的设计目的是处理单次异步操作的结果。 如果你需要 **周期性或持续更新 UI**，频繁地重新构建 FutureBuilder 并重新触发 Future 可能效率不高，尤其当 Future 的结果没有变化时，仍然可能触发 Widget 重建。
 
+- **StreamBuilder 适合持续数据流。** 例如，实时数据更新 (股票价格、传感器数据)、聊天消息、进度更新等。 StreamBuilder 的优势在于 **事件驱动**。 它只会在 Stream 发出新事件时才更新 UI，避免了轮询或不必要的检查，减少了 Widget 重建的次数，从而可能提高性能，尤其是对于频繁更新的场景。
