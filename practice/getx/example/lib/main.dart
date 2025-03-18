@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getx_example/counter_easy/view.dart';
+import 'package:getx_example/counter_rx/view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,11 +18,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(),
-      ),
+      home: CounterRxPage(),
     );
   }
 }
