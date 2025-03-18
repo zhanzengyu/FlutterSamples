@@ -1,8 +1,16 @@
 # FlutterSample
 
-当前分支改为了纯 Flutter 结构，如何要查看基于 Android 混合编程 Flutter 的话，请查看：
+当前分支改为了纯 Flutter 结构，如果要查看基于 Android 混合编程 Flutter 的话，请查看：
 
 [混编 Flutter 示例代码](https://github.com/zhanzengyu/FlutterSamples/tree/mixed_master)
+
+NOTE：
+
+> 如果直接用 AndroidStudio 打开本项目，会识别为 Android 项目，并提示 Gradle Sync failed。  
+>
+> 需要使用 AndroidStudio 的 Open 打开 pubspec.yaml 文件进行项目导入。
+
+
 
 #### [1. 使用InheritedWidget传递数据](./lib/InheritedWidget)
 
