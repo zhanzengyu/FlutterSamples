@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_example/easy/jump_one/view.dart';
+import 'package:getx_example/complex/counter_complex/view.dart';
 import 'package:getx_example/easy/jump_two/view.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
       getPages: [
         GetPage(name: '/jump_two', page: () => JumpTwoPage()),
       ],
-      home: JumpOnePage(),
+      home: CounterComplexPage(),
     );
   }
 }
