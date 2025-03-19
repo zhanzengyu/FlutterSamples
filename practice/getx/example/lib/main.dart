@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_example/counter_easy/view.dart';
-import 'package:getx_example/counter_rx/view.dart';
+import 'package:getx_example/easy/jump_one/view.dart';
+import 'package:getx_example/easy/jump_two/view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +20,10 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterRxPage(),
+      getPages: [
+        GetPage(name: '/jump_two', page: () => JumpTwoPage()),
+      ],
+      home: JumpOnePage(),
     );
   }
 }
