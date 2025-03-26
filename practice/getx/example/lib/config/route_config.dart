@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getx_example/architecture_rx_usage/easy_x_ebs_counter_page.dart';
 import 'package:getx_example/architecture_usage/easy_x_counter_page.dart';
 import 'package:getx_example/binding/binding_one/binding.dart';
 import 'package:getx_example/binding/binding_one/view.dart';
@@ -11,6 +12,7 @@ class RouteConfig {
   static const String bindingTwo = '/bindingTwo';
   static const String jumpTwo = '/jump_two';
   static const String easyXCounterPage = '/EasyXCounterPage';
+  static const String easyXEbsCounterPage = '/EasyXEbsCounterPage';
 
   static final List<GetPage> getPages = [
     GetPage(
@@ -28,5 +30,6 @@ class RouteConfig {
       page: () => JumpTwoPage(),
     ),
     GetPage(name: easyXCounterPage, page: () => EasyXCounterPage()),
+    GetPage(name: easyXEbsCounterPage, page: () => EasyXEbsCounterPage()),
   ];
 }

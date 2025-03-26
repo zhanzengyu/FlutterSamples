@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RouteConfig.easyXCounterPage,
+      initialRoute: RouteConfig.easyXEbsCounterPage,
       getPages: RouteConfig.getPages,
     );
   }
